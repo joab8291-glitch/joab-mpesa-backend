@@ -22,12 +22,9 @@ async function getAccessToken() {
   return res.data.access_token;
 }
 
- app.post('/stkpush', async (req, res) => {
-    let phone = req.body.phone || req.query.phone;
-    let amount = req.body.amount || req.query.amount;
-
-    if (!phone || !amount) {
-        return res.status(400).json({ error: "Phone and amount are required." });
+ app.get("/stkpush", async (req, res) => {
+  const { phone, amount } = req.body;
+  if (!phone || !amount) return res.status(400).json({ error: "Phone and amount are required." });
      const formattedPhone = phone.startsWith("254") ? phone : "254" + phone.replace(/^0/, "");
 
   try {
