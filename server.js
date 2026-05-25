@@ -22,7 +22,7 @@ async function getAccessToken() {
   return res.data.access_token;
 }
 
-app.post("/stkpush", async (req, res) => {
+app.get("/stkpush", async (req, res) => {
   const { phone, amount } = req.body;
   if (!phone || !amount) return res.status(400).json({ error: "Phone and amount are required." });
 
